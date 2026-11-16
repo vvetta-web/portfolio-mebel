@@ -294,6 +294,16 @@
     .steps__list .num { font-size: var(--v-t-xl); }
   }
 
+  /* ---- светлые вставки: разбавляем тёмный финал ритмом тёмный–светлый ------- */
+  #opyt, #kak {
+    --v-ink: #232a31; --v-ink-soft: #5d6771;
+    --v-hair: rgb(28 33 38 / .14); --v-hair-strong: rgb(28 33 38 / .34);
+    --v-surface: #e2e6ea; --v-accent: #45525f;
+    background: #e9edf1; color: var(--v-ink);
+  }
+  #opyt .exp__plus::before, #opyt .exp__plus::after { background: var(--v-ink); }
+  #opyt .exp__row[open] .exp__plus::before, #opyt .exp__row[open] .exp__plus::after { background: var(--v-accent); }
+
   /* ---- финал: по центру, свет за курсором --------------------------------- */
   .close { height: 100%; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--v-gutter);
     background: radial-gradient(56rem 38rem at calc(var(--v-mx, .5) * 100%) calc(var(--v-my, .45) * 100%), rgb(197 206 216 / .16), transparent 62%); }
@@ -348,7 +358,7 @@
         </div>
         <div class="hero__veil" aria-hidden="true"></div>
         <div class="v-layer hero__door" data-v-parallax="-0.3">
-          <img src="assets/door.webp" alt="" width="1000" height="1409">
+          <img src="assets/door.webp" alt="Фасад кухонной дверцы из дуба с латунной ручкой" width="1000" height="1333">
         </div>
         <div class="hero__floor" aria-hidden="true"></div>
 
