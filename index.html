@@ -296,10 +296,40 @@
     --v-ink: #232a31; --v-ink-soft: #5d6771;
     --v-hair: rgb(28 33 38 / .14); --v-hair-strong: rgb(28 33 38 / .34);
     --v-surface: #e2e6ea; --v-accent: #45525f;
-    background: #e9edf1; color: var(--v-ink);
+    color: var(--v-ink);
+    background:
+      radial-gradient(64rem 32rem at 90% -8%, rgb(255 255 255 / .9), transparent 62%),
+      radial-gradient(48rem 26rem at 2% 112%, rgb(197 206 216 / .5), transparent 60%),
+      #e9edf1;
   }
+  /* фирменный штрих: контурный фасад-филёнка в углу секции */
+  #opyt::before, #kak::before {
+    content: ""; position: absolute; z-index: 0; pointer-events: none;
+    width: clamp(220px, 24vw, 400px); aspect-ratio: 360 / 520;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 520' fill='none' stroke='%23232a31'%3E%3Crect x='8' y='8' width='344' height='504' stroke-width='3'/%3E%3Crect x='54' y='54' width='252' height='412' stroke-width='2'/%3E%3Crect x='78' y='78' width='204' height='364' stroke-width='1'/%3E%3C/svg%3E") no-repeat center / contain;
+    opacity: .08;
+  }
+  #opyt::before { right: clamp(1rem, 4vw, 4rem); top: clamp(1.5rem, 5vh, 4rem); }
+  #kak::before { left: clamp(1rem, 4vw, 4rem); bottom: clamp(1.5rem, 5vh, 4rem); transform: rotate(180deg); }
+  #opyt .v-wrap, #kak .v-wrap { position: relative; z-index: 1; }
   #opyt .exp__plus::before, #opyt .exp__plus::after { background: var(--v-ink); }
   #opyt .exp__row[open] .exp__plus::before, #opyt .exp__row[open] .exp__plus::after { background: var(--v-accent); }
+
+  /* опыт: полоса фактов-цифр справа от вступления */
+  .exp__stats { grid-column: 2; grid-row: 2; display: grid; gap: 0; align-self: start; }
+  .exp__stats li { display: grid; grid-template-columns: auto 1fr; gap: var(--v-4); align-items: baseline; padding: var(--v-4) 0; border-top: 1px solid var(--v-hair); }
+  .exp__stats li:last-child { border-bottom: 1px solid var(--v-hair); }
+  .exp__stats .v-nums { font-family: var(--v-font-display); font-weight: 500; font-style: italic; font-size: var(--v-t-2xl); line-height: 1; color: var(--v-accent); min-width: 4ch; white-space: nowrap; }
+  .exp__stats .v-label { color: var(--v-ink-soft); }
+  @media (max-width: 760px) { .exp__stats { grid-column: 1; grid-row: auto; } }
+
+  /* как заказать: карточка «к замеру пригодится» под липким заголовком */
+  .steps__card { margin-top: var(--v-6); padding: var(--v-5); background: rgb(255 255 255 / .55);
+    border: 1px solid var(--v-hair); border-radius: var(--v-radius); max-width: 26rem; }
+  .steps__card > .v-label { color: var(--v-accent); }
+  .steps__card ul { margin-top: var(--v-3); display: grid; gap: var(--v-2); }
+  .steps__card li { position: relative; padding-left: 1.5em; color: var(--v-ink-soft); font-size: var(--v-t-sm); text-wrap: pretty; }
+  .steps__card li::before { content: ""; position: absolute; left: 0; top: .62em; width: .85em; height: 2px; background: var(--v-accent); }
 
   /* ---- финал: по центру, свет за курсором --------------------------------- */
   .close { height: 100%; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--v-gutter);
@@ -539,6 +569,11 @@
             <p><b>{{имя-мастера}}</b>, {{роль}}</p>
           </div>
         </div>
+        <ul class="exp__stats" data-v-in data-v-stagger="80">
+          <li><span class="v-nums">1</span><span class="v-label">день — предварительный расчёт по плану из ЖК</span></li>
+          <li><span class="v-nums">5</span><span class="v-label">шагов — от первого сообщения до собранной кухни</span></li>
+          <li><span class="v-nums">24</span><span class="v-label">месяца гарантии на фурнитуру</span></li>
+        </ul>
         <div class="exp__list" data-v-in data-v-stagger="70">
           <details class="exp__row" open>
             <summary><span class="exp__q">Столешница стыкуется на виду</span><i class="exp__plus" aria-hidden="true"></i></summary>
@@ -603,6 +638,14 @@
         <div class="steps__head" data-v-in data-v-in-self>
           <h2 class="v-display v-display--lg">Как заказать</h2>
           <p class="v-body">Пять шагов от первого сообщения до собранной кухни. <b>Ориентир по цене</b> в день обращения, <b>точная смета</b> после замера, <b>дата монтажа</b> в договоре.</p>
+          <div class="steps__card" data-v-in data-v-in-self>
+            <span class="v-label">К замеру пригодится</span>
+            <ul>
+              <li>План БТИ или планировка из ЖК</li>
+              <li>Фото стены с рулеткой вдоль неё</li>
+              <li>Размеры окна, подоконника и вентиляции</li>
+            </ul>
+          </div>
         </div>
         <ol class="steps__list" data-v-in data-v-stagger="90">
           <li><span class="num">1</span><div><h3>Размеры и предварительный расчёт</h3><p>Присылаете план из ЖК, фото стены с рулеткой или просто длину и высоту. <b>За день</b> отвечаем предварительным расчётом и вариантами фасадов.</p></div></li>
