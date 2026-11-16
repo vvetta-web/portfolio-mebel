@@ -106,6 +106,9 @@
 
   /* ---- фирменный ход: конфигуратор фасадов -------------------------------- */
   .conf { position: absolute; inset: 0; }
+  /* вуаль под текст: без неё реплика проваливается на светлую столешницу */
+  .conf::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(to bottom, rgb(18 20 23 / .88) 0%, rgb(18 20 23 / .55) 38%, rgb(18 20 23 / .3) 52%, transparent 68%); }
   .v-page .conf__img { position: absolute; inset: 0 -6% -16% -6%; width: 112%; max-width: none; height: 116%; object-fit: cover; object-position: 50% 50%; will-change: opacity; }
   .v-page .conf__img + .conf__img { opacity: 0; }
   .conf__top { position: absolute; z-index: 3; left: var(--v-gutter); right: var(--v-gutter); top: clamp(5.5rem, 13vh, 8rem); }
