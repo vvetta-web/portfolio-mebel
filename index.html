@@ -108,19 +108,20 @@
   .conf { position: absolute; inset: 0; }
   /* вуаль под текст: без неё реплика проваливается на светлую столешницу */
   .conf::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    background: linear-gradient(to bottom, rgb(18 20 23 / .88) 0%, rgb(18 20 23 / .55) 38%, rgb(18 20 23 / .3) 52%, transparent 68%); }
+    background: linear-gradient(to bottom, rgb(18 20 23 / .9) 0%, rgb(18 20 23 / .55) 34%, rgb(18 20 23 / .28) 50%, transparent 64%); }
   .v-page .conf__img { position: absolute; inset: 0 -6% -16% -6%; width: 112%; max-width: none; height: 116%; object-fit: cover; object-position: 50% 50%; will-change: opacity; }
   .v-page .conf__img + .conf__img { opacity: 0; }
-  .conf__top { position: absolute; z-index: 3; left: var(--v-gutter); right: var(--v-gutter); top: clamp(5.5rem, 13vh, 8rem); }
+  /* текст целиком в тёмной части кадра, до линии подсветки кухни */
+  .conf__top { position: absolute; z-index: 3; left: var(--v-gutter); right: var(--v-gutter); top: clamp(4.5rem, 9vh, 6.5rem); }
   .conf__top > div:first-child, .conf__rep { max-width: 40rem; }
   .conf__top .v-label { display: block; margin-bottom: var(--v-3); color: var(--v-accent); }
-  .conf__top .v-display { margin-bottom: var(--v-5); }
+  .conf__top .v-display { margin-bottom: var(--v-4); }
   .conf__rep { position: relative; min-height: 9rem; }
   .conf__rep > div { position: absolute; left: 0; top: 0; max-width: 34rem; }
   .conf__rep h3 { font-family: var(--v-font-display); font-weight: 600; font-size: var(--v-t-xl); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: var(--v-2); }
   .conf__rep p { color: var(--v-ink-soft); font-size: var(--v-t-sm); max-width: 42ch; }
   .conf__rep p b { color: var(--v-ink); font-weight: 500; }
-  .conf__rep .price { display: block; margin-top: var(--v-3); font-size: var(--v-t-sm); color: var(--v-ink); }
+  .conf__rep .price { display: block; margin-top: var(--v-2); font-size: var(--v-t-sm); color: var(--v-ink); }
   .conf__rep .price b { color: var(--v-accent); font-weight: 600; }
   .sw { position: absolute; z-index: 3; right: 0; top: 0; display: grid; gap: var(--v-3); }
   .sw__btn { display: flex; align-items: center; justify-content: flex-end; gap: var(--v-3); padding: 0; min-height: 44px; text-align: right; }
@@ -170,6 +171,8 @@
 
   /* ---- наши работы: мозаика 4 колонки под фото клиента ------------------ */
   .works__head { display: flex; flex-wrap: wrap; gap: var(--v-4) var(--v-8); align-items: end; justify-content: space-between; margin-bottom: var(--v-7); }
+  /* иначе между мозаикой и «из чего сделано» двойной отступ секций — пустой провал */
+  #raboty { padding-bottom: calc(var(--v-section) * .4); }
   .works__head .v-body { color: var(--v-ink-soft); max-width: 46ch; }
   .works__grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(11rem, 17vw, 15rem); gap: var(--v-4); }
   .work { position: relative; border-radius: var(--v-radius); overflow: hidden; background: var(--v-surface); box-shadow: var(--v-edge), var(--v-e1); }
@@ -341,7 +344,6 @@
   .close__inner .v-display { max-width: 20ch; }
   .close__inner .v-lede { margin: var(--v-5) auto 0; max-width: 40ch; color: var(--v-ink-soft); }
   .close__cta { margin-top: var(--v-8); }
-  .close__hint { margin-top: var(--v-5); color: var(--v-ink-soft); font-size: var(--v-t-sm); }
   /* контакты финала — три колонки с подписями и разделителем */
   .close__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--v-5) var(--v-7); align-items: start;
     width: min(60rem, 100%); margin-top: var(--v-8); padding-top: var(--v-6); border-top: 1px solid var(--v-hair); text-align: left; }
@@ -362,7 +364,6 @@
     .close__inner { padding-top: var(--v-7); }
     .close__inner .v-lede { max-width: 32ch; margin-top: var(--v-4); }
     .close__cta { margin-top: var(--v-6); }
-    .close__hint { margin-top: var(--v-3); }
     .close__facts { grid-template-columns: 1fr; gap: var(--v-5); margin-top: var(--v-6); }
     .foot { padding: var(--v-4) 0; }
   }
@@ -372,7 +373,6 @@
     .close__inner .v-display { font-size: clamp(1.9rem, 4.6vh, 2.6rem); }
     .close__inner .v-lede { margin-top: var(--v-4); max-width: 46ch; }
     .close__cta { margin-top: var(--v-6); }
-    .close__hint { margin-top: var(--v-3); }
     .close__facts { margin-top: var(--v-6); padding-top: var(--v-5); }
   }
 </style>
@@ -675,14 +675,13 @@
     <!-- 9 · ДЕЙСТВИЕ: расчёт -->
     <section data-v-act="pin" data-v-span="1.4" data-v-drift="#15181c" id="raschet" aria-label="Рассчитать кухню">
       <div data-v-stage>
-        <div class="close">
+        <div class="close" data-v-spotlight>
           <div class="close__inner">
             <h2 class="v-display v-display--lg" data-v-cue="0 2 0 0" data-v-kinetic="lines">Пришлите размеры, за день дадим расчёт</h2>
             <p class="v-lede" data-v-cue="0 2 0 0">Фото стены с рулеткой, план из ЖК или просто длина и высота. Ответим предварительным расчётом, а точную смету дадим после замера.</p>
             <div class="close__cta" data-v-cue="0 2 0 0" data-v-rise="0">
               <a class="v-btn" href="{{ссылка-расчёта}}">Рассчитать кухню</a>
             </div>
-            <p class="close__hint" data-v-cue="0 2 0 0">Ответим в течение рабочего дня. Шкафы и гардеробные считаем так же.</p>
             <div class="close__facts" data-v-cue="0 2 0 0">
               <div class="fact">
                 <span class="v-label">Телефон</span>
