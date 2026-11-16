@@ -341,7 +341,7 @@
   .close__inner .v-display { max-width: 20ch; }
   .close__inner .v-lede { margin: var(--v-5) auto 0; max-width: 40ch; color: var(--v-ink-soft); }
   .close__cta { margin-top: var(--v-8); }
-  .close__hint { margin-top: var(--v-4); color: var(--v-ink-soft); font-size: var(--v-t-sm); }
+  .close__hint { margin-top: var(--v-5); color: var(--v-ink-soft); font-size: var(--v-t-sm); }
   /* контакты финала — три колонки с подписями и разделителем */
   .close__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--v-5) var(--v-7); align-items: start;
     width: min(60rem, 100%); margin-top: var(--v-8); padding-top: var(--v-6); border-top: 1px solid var(--v-hair); text-align: left; }
@@ -365,6 +365,15 @@
     .close__hint { margin-top: var(--v-3); }
     .close__facts { grid-template-columns: 1fr; gap: var(--v-5); margin-top: var(--v-6); }
     .foot { padding: var(--v-4) 0; }
+  }
+  /* низкое окно на десктопе: весь финал должен помещаться без обрезки снизу */
+  @media (min-width: 761px) and (max-height: 920px) {
+    .close__inner { padding-top: clamp(4.5rem, 9vh, 6rem); }
+    .close__inner .v-display { font-size: clamp(1.9rem, 4.6vh, 2.6rem); }
+    .close__inner .v-lede { margin-top: var(--v-4); max-width: 46ch; }
+    .close__cta { margin-top: var(--v-6); }
+    .close__hint { margin-top: var(--v-3); }
+    .close__facts { margin-top: var(--v-6); padding-top: var(--v-5); }
   }
 </style>
 </head>
@@ -666,7 +675,7 @@
     <!-- 9 · ДЕЙСТВИЕ: расчёт -->
     <section data-v-act="pin" data-v-span="1.4" data-v-drift="#15181c" id="raschet" aria-label="Рассчитать кухню">
       <div data-v-stage>
-        <div class="close" data-v-spotlight>
+        <div class="close">
           <div class="close__inner">
             <h2 class="v-display v-display--lg" data-v-cue="0 2 0 0" data-v-kinetic="lines">Пришлите размеры, за день дадим расчёт</h2>
             <p class="v-lede" data-v-cue="0 2 0 0">Фото стены с рулеткой, план из ЖК или просто длина и высота. Ответим предварительным расчётом, а точную смету дадим после замера.</p>
