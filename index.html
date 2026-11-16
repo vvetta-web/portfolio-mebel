@@ -68,8 +68,6 @@
 
   /* ---- hero: три плана, текст по центру сверху --------------------------- */
   .hero__back img { width: 116%; height: 140%; left: -8%; top: -2%; object-fit: cover; object-position: 50% 50%; }
-  .hero__door img { width: clamp(200px, 21vw, 360px); right: clamp(2rem, 8vw, 10rem); bottom: -3vh;
-    filter: drop-shadow(0 34px 44px rgb(0 0 0 / .65)); }
   .hero__floor { position: absolute; inset: auto 0 0 0; height: 30%; z-index: 2; pointer-events: none;
     background: linear-gradient(to top, var(--v-canvas) 0%, rgb(18 20 23 / .55) 50%, transparent 100%); }
   .hero__veil { position: absolute; inset: 0 0 auto 0; height: 58%; z-index: 2; pointer-events: none;
@@ -95,10 +93,9 @@
     .hero__note { right: 36%; gap: var(--v-3) var(--v-6); }
   }
   @media (max-width: 760px) {
-    /* кухня видна: фронты и подсветка в нижней трети экрана, дверца стоит на столешнице */
+    /* кухня видна: фронты и подсветка в нижней трети экрана */
     .hero__back img { width: 180%; height: auto; left: -40%; top: auto; bottom: 5vh; object-fit: unset;
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%); }
-    .hero__door img { width: 32vw; right: 0; bottom: 7vh; filter: drop-shadow(0 18px 24px rgb(0 0 0 / .6)); }
     .hero__veil { display: none; }
     .hero__floor { height: 16%; }
     .hero__copy { top: clamp(5.25rem, 12vh, 7rem); align-items: flex-start; text-align: left; }
@@ -357,9 +354,6 @@
           <img src="assets/kitchen-base.webp" alt="" width="1920" height="1067">
         </div>
         <div class="hero__veil" aria-hidden="true"></div>
-        <div class="v-layer hero__door" data-v-parallax="-0.3">
-          <img src="assets/door.webp" alt="Фасад кухонной дверцы из дуба с латунной ручкой" width="1000" height="1333">
-        </div>
         <div class="hero__floor" aria-hidden="true"></div>
 
         <div class="hero__copy">
